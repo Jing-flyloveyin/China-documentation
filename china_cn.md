@@ -80,7 +80,7 @@ Mapbox目前提供3个中国政府认证的China 地图样式，正好对应Mapb
 ## 对图标进行偏移
 为了符合中国政府对位置保密的要求，Mapbox 必须对一些默认的地图样式（以上3个地图样式）进行了偏移。这就意味着你还需要把显示在地图上的图标也进行偏移，从而使这些图标与偏移的地图样式相匹配。该模块其实是将WGS-84坐标转换为GCJ-02坐标。为了更好地理解为什么需要坐标转换，我们建议阅读这篇[Wiki条目](https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#The_China_GPS_shift_problem)和[文章](http://www.travelandleisure.com/articles/digital-maps-skewed-china)。
 
-在0.4.1版本中，您需要手动对图标进行偏移，需要将您的`Location`、`LatLng` 或GeoJSON 几何类型传递给公共的`ShiftForChina.shift(double lon, double lat)` 方法，返回对象是一个表示JSONObject 的`String`。因此，要把它转换回原来的格式，你需要：
+该插件有一个`ShiftForChina`类，带有`String shift（double lon，double lat）`方法。 您可以将*unshifted*的经度和纬度坐标传递给`shift（）`方法。该方法返回表示`JSONObject`的`String`。使用此移位坐标`String`将数据添加到地图中。
 
 ```java
 Location toLocation = new Location(fromLocation);
@@ -92,5 +92,49 @@ try {
   jsonException.printStackTrace();
 }
 ```
+```Kotlin
+val shiftedCoordinatesJson = shiftForChina.shift(unshiftedLong, unshiftedLat)
+try {
+	val jsonObject = JSONObject(shiftedCoordinatesJson)
+	val shiftedLong = jsonObject.getDouble("lon")
+	val shiftedLat = jsonObject.getDouble("lat")
+	// You now have longitude and latitude values, which you can use however you'd like.
+} catch (jsonException: JSONException) {
+	jsonException.printStackTrace()
+}
+```
 
-请注意，如上所述的偏移模块仅会在这个插件的China 依赖项下可用。这是一个例外，按照上面提到的规则，如果您想在App 中同时支持Global 和China 两种依赖，仅需要切换依赖包的名字即可。如果在应用程序中使用了Global 依赖，您需要删除偏移图标的代码。在后面的SDK 版本中会进一步优化，使用偏移功能将更加容易。
+## 对位置进行偏移
+[点击这里阅读如何在适用于Android的Mapbox核心库中使用`Mapbox LocationEngine`](https://www.mapbox.com/android-docs/core/overview/#locationengine)
+
+当发生新的位置更新时，您需要手动将位置对象提供给插件的ShiftLocation类的shift（）方法。 此方法和类处理Location对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的LocationEngine，扩展另一个并监听位置更新。 更新发生时，通过shift模块发送Location对象，并让locationEngine提供修改后的位置。
+
+```Kotlin
+// Called when the location has changed.
+ 
+override fun onLocationChanged(location: Location) {
+ 
+	if (needChinaShifted) {
+	
+	    shiftedDeviceLocation = ShiftLocation.shift(location)
+	
+	    // You now have longitude and latitude values, which you can use however you'd like.
+	    
+	}
+  ```
+  ```Java
+  // Called when the location has changed.
+ 
+@Override
+public void onLocationChanged(Location location) {
+ 
+	if (needChinaShifted) {
+	    
+	shiftedDeviceLocation = ShiftLocation.shift(location);
+	    
+	// You now have longitude and latitude values, which you can use however you'd like.
+	
+	}
+}
+```
+}
