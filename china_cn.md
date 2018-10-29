@@ -63,7 +63,6 @@ Android 提供了几种解决方案来减少您的APK的大小。第一种是使
 | --- | --- |
 | `MapView` | `ChinaMapView` |
 | `MapboxMapOptions` | `MapboxMapChinaOptions` |
-| `MapboxDirections` | `MapboxDirectionsChina` |
 
 如上所述，当您使用错误的地图类时，Android Lint 将尝试警告您。但不会在在每一个实例中都出现，所以我们仍然建议手动确认，并使用正确的对象。
 
