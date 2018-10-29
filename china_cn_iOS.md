@@ -3,6 +3,7 @@
 - 支持中国用户
 - 坐标系转化为GCJ-02
 - 海外的很多地图服务，在国内访问时经常受限，或者存在访问慢的问题。Mapbox 很早之前就已经推出了Mapbox.cn 地图服务，任何用户都可以在国内（或通过中国的移动运营商）非常快速的访问 Mapbox 的地图。现在Mapbox 发布了这个Android China 插件，专门绑定了Mapbox Android SDK，并且自动配置了Mapbox.cn 的地图节点。此外，插件中的一个依赖项允许用户对地图上的图标进行坐标偏移，从而保证所有的图标都正确地显示在Mapbox.cn 地图上。
+
 Mapbox China for iOS 为使用 Mapbox China 地图提供了基础。该插件包含使用 Mapbox China 样式的便捷方法，将 WGS-84 坐标转换为 GCJ-02 的坐标系，以及提供 GCJ-02 坐标位置更新的自定义位置管理器。
 
 ## 从这里开始
@@ -39,9 +40,6 @@ Mapbox目前提供三种中国政府认可的地图样式：Mapbox街景地图�
 | 街景地图 | `mapbox://styles/mapbox/streets-zh-v1` | `mbcn_streetsChineseStyleURL` |
 | 暗黑地图 | `mapbox://styles/mapbox/dark-zh-v1` | `mbcn_darkChineseStyleURL` |
 | 浅色地图 | `mapbox://styles/mapbox/light-zh-v1` | `mbcn_lightChineseStyleURL` |
-
-## 使用正确的对象Objects
-此外，本Android China 插件同时也封装了一些原有的地图类Classes，从而代替对应的一些常规的类。例如，在Android 的常规Map SDK中，一般可以在Activities 的布局文件中使用`MapView` 。如果您使用了China 插件，Studio 会通过lint 错误来提示您替换使用`ChinaMapView`，其实它封装了`MapView` 对象。其实，`ChinaMapView`仅设置了一些针对国内的默认参数，从而实现最优的效果。其中包括连接提供的地图瓦片的中国服务器等。在下面提供的图表中，我们列出了对象列表，这些通常会在Android Map SDK中使用到，以及对应到China 插件中的对象。
 
 ## 使用Mapbox China插件
 ### 添加插件
