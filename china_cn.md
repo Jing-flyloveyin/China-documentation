@@ -82,6 +82,7 @@ Mapbox目前提供3个中国政府认证的China 地图样式，正好对应Mapb
 
 该插件有一个`ShiftForChina`类，带有`String shift（double lon，double lat）`方法。 您可以将*unshifted*的经度和纬度坐标传递给`shift（）`方法。该方法返回表示`JSONObject`的`String`。使用此移位坐标`String`将数据添加到地图中。
 
+Java
 ```java
 Location toLocation = new Location(fromLocation);
 try {
@@ -92,6 +93,7 @@ try {
   jsonException.printStackTrace();
 }
 ```
+Kotlin
 ```Kotlin
 val shiftedCoordinatesJson = shiftForChina.shift(unshiftedLong, unshiftedLat)
 try {
@@ -109,6 +111,7 @@ try {
 
 当发生新的位置更新时，您需要手动将位置对象提供给插件的ShiftLocation类的shift（）方法。 此方法和类处理Location对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的LocationEngine，扩展另一个并监听位置更新。 更新发生时，通过shift模块发送Location对象，并让locationEngine提供修改后的位置。
 
+Kotlin
 ```Kotlin
 // Called when the location has changed.
  
@@ -122,7 +125,8 @@ override fun onLocationChanged(location: Location) {
 	    
 	}
   ```
-  ```Java
+Java
+```Java
   // Called when the location has changed.
  
 @Override
@@ -136,5 +140,6 @@ public void onLocationChanged(Location location) {
 	
 	}
 }
-```
+
 }
+```
