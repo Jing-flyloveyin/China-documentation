@@ -109,7 +109,7 @@ try {
 ## 对位置进行偏移
 [点击这里阅读如何在适用于Android的Mapbox核心库中使用`Mapbox LocationEngine`](https://www.mapbox.com/android-docs/core/overview/#locationengine)
 
-当发生新的位置更新时，您需要手动将位置对象提供给插件的ShiftLocation类的shift（）方法。 此方法和类处理Location对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的LocationEngine，扩展另一个并监听位置更新。 更新发生时，通过shift模块发送Location对象，并让locationEngine提供修改后的位置。
+当发生新的位置更新时，您需要手动将位置对象提供给插件的`ShiftLocation`类的`shift（）`方法。 此方法和类处理`Location`对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的`LocationEngine`，扩展另一个并监听位置更新。 更新发生时，通过`shift`模块发送`Location`对象，并让`locationEngine`提供修改后的位置。
 
 Kotlin
 ```Kotlin
