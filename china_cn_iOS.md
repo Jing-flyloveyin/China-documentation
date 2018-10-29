@@ -7,7 +7,7 @@
 Mapbox China for iOS 为使用 Mapbox China 地图提供了基础。该插件包含使用 Mapbox China 样式的便捷方法，将 WGS-84 坐标转换为 GCJ-02 的坐标系，以及提供 GCJ-02 坐标位置更新的自定义位置管理器。
 
 ## 从这里开始
-要访问 Mapbox China 样式，您需要一个特殊的access token。请填写https://www.mapbox.cn/contact上的表格，即可申请特殊的access token。没有此access token，您将无法访问 Mapbox China 矢量切片。
+要访问 Mapbox China 样式，您需要一个特殊的access token。请填写 https://www.mapbox.cn/contact 上的表格，即可申请特殊的access token。没有此access token，您将无法访问 Mapbox China 矢量切片。
 
 ## 安装
 通过安装适用于 iOS 的 Mapbox Maps SDK 和 Mapbox China 插件来设置 Mapbox China 插件，您可以按照我们的[安装指南](https://www.mapbox.com/install/ios/)中的说明安装 Maps SDK。
