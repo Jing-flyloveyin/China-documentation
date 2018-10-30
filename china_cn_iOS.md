@@ -81,7 +81,7 @@ MBXChinaPlugin *chinaPlugin = [[MBXChinaPlugin alloc] init];
 ```
 
 ### 坐标系转换
-默认情况下，Maps SDK使用WGS-84坐标。该插件可将WGS-84坐标转换为GCJ-02坐标，以符合中国政府的制图要求。目前，此插件支持转移`CLLocationCoordinate2D`和`[MGLShape](https://www.mapbox.com/ios-sdk/api/4.5.0/Classes/MGLShape.html)`对象。 转换由`[NSValueTransformer](https://developer.apple.com/documentation/foundation/nsvaluetransformer)`和`MGLConvertToDatumTransformerName`管理，后者是`[NSValueTransformerName](https://developer.apple.com/documentation/foundation/nsvaluetransformername)`。 通过将插件添加到地图视图或直接初始化`MBCNGCJCoordinateTransformer`，可以使`MGLConvertToDatumTransformerName`可用。
+默认情况下，Maps SDK使用WGS-84坐标。该插件可将WGS-84坐标转换为GCJ-02坐标，以符合中国政府的制图要求。目前，此插件支持转移`CLLocationCoordinate2D`和[`MGLShape`](https://www.mapbox.com/ios-sdk/api/4.5.0/Classes/MGLShape.html)`对象。 转换由[`NSValueTransformer`](https://developer.apple.com/documentation/foundation/nsvaluetransformer)`和`MGLConvertToDatumTransformerName`管理，后者是[`NSValueTransformerName`](https://developer.apple.com/documentation/foundation/nsvaluetransformername)。 通过将插件添加到地图视图或直接初始化`MBCNGCJCoordinateTransformer`，可以使`MGLConvertToDatumTransformerName`可用。
 Swift
 ```Swift
 let transformerName = NSValueTransformerName(rawValue: MGLConvertToDatumTransformerName)
