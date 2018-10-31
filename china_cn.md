@@ -78,7 +78,7 @@ Mapbox 目前提供3个中国政府认证的 China 地图样式，正好对应 M
 当使用这些 SDK 中的常量时，你将始终使用的 Mapbox 最新版本的地图样式。相反，手动设置样式可以确保您对地图样式有更多的控制，并决定应用程序中的地图样式何时进行更新。
 
 ## 对图标进行偏移
-为了符合中国政府对位置保密的要求，Mapbox 必须对一些默认的地图样式（以上3个地图样式）进行了偏移。这就意味着你还需要把显示在地图上的图标也进行偏移，从而使这些图标与偏移的地图样式相匹配。该模块其实是将 WGS-84 坐标转换为 GCJ-02 坐标。为了更好地理解为什么需要坐标转换，我们建议阅读这篇[Wiki条目](https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#The_China_GPS_shift_problem)和[文章](http://www.travelandleisure.com/articles/digital-maps-skewed-china)。
+为了符合中国政府对位置保密的要求，Mapbox 提供了已进行偏移过的默认的地图样式（以上3个地图样式）。这就意味着你还需要把显示在地图上的图标也进行偏移，从而使这些图标与偏移的地图样式相匹配。该模块其实是将 WGS-84 坐标转换为 GCJ-02 坐标。为了更好地理解为什么需要坐标转换，我们建议阅读这篇[Wiki条目](https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#The_China_GPS_shift_problem)和[文章](http://www.travelandleisure.com/articles/digital-maps-skewed-china)。
 
 该插件有一个 `ShiftForChina` 类，带有 `String shift（double lon，double lat）` 方法。 您可以将 *unshifted* 的经度和纬度坐标传递给`shift（）` 方法。该方法返回表示 `JSONObject` 格式的 `String`。使用坐标偏移后的 `String` 将数据添加到地图中。
 
@@ -109,7 +109,7 @@ try {
 ## 对位置进行偏移
 [点击这里阅读如何在适用于 Android 的 Mapbox 核心库中使用 `Mapbox LocationEngine`](https://www.mapbox.com/android-docs/core/overview/#locationengine)
 
-当发生位置更新时，您需要手动将位置对象提供给插件的 `ShiftLocation` 类的 `shift（）` 方法。 此方法和类处理 `Location` 对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的 `LocationEngine`，扩展它并监听位置更新。 更新发生时，通过 `shift` 模块发送 `Location` 对象，并让`locationEngine` 提供修改后的位置。
+当发生位置更新时，您需要手动将位置对象传入到的 `ShiftLocation` 类的 `shift（）` 方法中。 此方法和类处理 `Location` 对象，而不是处理原始坐标值。 目前，最好的方法是创建自己的 `LocationEngine`，扩展它并监听位置更新。 更新发生时，通过 `shift` 模块发送 `Location` 对象，并让`locationEngine` 提供修改后的位置。
 
 Kotlin
 ```Kotlin
